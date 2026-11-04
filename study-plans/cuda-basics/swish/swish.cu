@@ -3,7 +3,11 @@
 
 __global__ void swish_kernel(const float* input, float* output, int N) {
     int idx = blockDim.x * blockIdx.x + threadIdx.x;
-    output[idx] = input[idx] / (1 + expf(-input[idx]));
+    if (idx < N) {
+        float x = input[idx];
+        output[idx] = x / (1.0f + expf(-x));
+        
+    }
     
 }
 
