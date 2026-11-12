@@ -5,7 +5,7 @@ __global__ void gelu_kernel(const float* input, float* output, int N) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
     if (idx < N) {
         float y = input[idx];
-        output[idx] = (y / 2.0f) * (1 + erff(y / sqrt(2.0f)));
+        output[idx] = (y / 2.0f) * (1.0f + erff(y / sqrtf(2.0f)));
     }
     
 }
